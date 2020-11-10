@@ -101,6 +101,19 @@
 	var/datum/martial_art/bscqc/theowo = new
 	theowo.teach(H)
 
+//IPC
+/datum/quirk/terminator
+	name = "Terminator"
+	desc = "Eres un IPC que has sido usado para la guerra. Eres resistente, pero tosco y lento."
+	value = 0
+	gain_text = "<span class='notice'>Te sientes resistente, pero lento.</span>"
+	lose_text = "<span class='notice'>Tu cuerpo se aligera, pero te sientes fragil.</span>"
+/datum/quirk/terminator/add()
+	if(ismachine(quirk_holder))
+		quirk_holder.dna.species.brute_mod = 1.2
+		quirk_holder.dna.species.burn_mod = 1.2
+		quirk_holder.dna.species.speed_mod = 2
+
 //IMPLANTES
 /datum/quirk/nutriimplant
 	name = "NutriImplante"
