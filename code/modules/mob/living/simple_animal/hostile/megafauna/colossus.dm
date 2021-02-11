@@ -253,8 +253,7 @@ Difficulty: Very Hard
 	name ="death bolt"
 	icon_state= "chronobolt"
 	damage = 25
-	armour_penetration = 100
-	speed = 2
+	speed = 1
 	eyeblur = 0
 	damage_type = BRUTE
 	pass_flags = PASSTABLE
