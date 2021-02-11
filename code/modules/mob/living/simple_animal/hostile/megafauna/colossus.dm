@@ -252,6 +252,7 @@ Difficulty: Very Hard
 /obj/item/projectile/colossus
 	name ="death bolt"
 	icon_state= "chronobolt"
+	armour_penetration = 50
 	damage = 25
 	speed = 1
 	eyeblur = 0
