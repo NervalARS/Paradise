@@ -254,7 +254,7 @@ Difficulty: Very Hard
 	icon_state= "chronobolt"
 	damage = 25
 	armour_penetration = 50
-	speed = 1
+	speed = 2
 	eyeblur = 0
 	damage_type = BRUTE
 	pass_flags = PASSTABLE
