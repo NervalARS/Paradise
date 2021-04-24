@@ -22,12 +22,15 @@
 	var/angle = 45
 	var/power = 5
 
+	//Modulo de resistencia a la teleportación
+	var/power_off_factor
+
 	// Based on the power used
-	var/teleport_cooldown = 0 // every index requires a bluespace crystal
-	var/list/power_options = list(5, 10, 20, 25, 30, 40, 50, 80)
+	var/teleport_cooldown = 0 // every index requires 5 bluespace crystal
+	var/list/power_options = list(5, 10, 20, 25, 30, 40, 50, 60, 70, 80)
 	var/teleporting = 0
 	var/crystals = 0
-	var/max_crystals = 4
+	var/max_crystals = 30
 	var/obj/item/gps/inserted_gps
 
 /obj/machinery/computer/telescience/New()
@@ -115,7 +118,7 @@
 		t += "<div class='statusDisplay'>"
 
 		for(var/i = 1; i <= power_options.len; i++)
-			if(crystals + telepad.efficiency < i)
+			if(crystals/5 + telepad.efficiency < i)
 				t += "<span class='linkOff'>[power_options[i]]</span>"
 				continue
 			if(power == power_options[i])
@@ -338,13 +341,13 @@
 		if(..()) // Check after we input a value, as they could've moved after they entered something
 			return
 		rotation = Clamp(new_rot, -900, 900)
-		rotation = round(rotation, 0.01)
+		rotation = round(rotation, 0.001)
 
 	if(href_list["setangle"])
 		var/new_angle = input("Please input desired elevation in degrees.", name, angle) as num
 		if(..())
 			return
-		angle = Clamp(round(new_angle, 0.1), 1, 9999)
+		angle = Clamp(round(new_angle, 0.001), 1, 9999)
 
 	if(href_list["setpower"])
 		var/index = href_list["setpower"]
@@ -391,7 +394,8 @@
 	updateUsrDialog()
 
 /obj/machinery/computer/telescience/proc/recalibrate()
-	teles_left = rand(30, 40)
+	teles_left = rand(35, 40)
 	//angle_off = rand(-25, 25)
 	power_off = rand(-4, 0)
 	rotation_off = rand(-10, 10)
+	power_off_factor = rand(-15, -5)/100
